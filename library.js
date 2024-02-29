@@ -83,3 +83,20 @@ const readers = [
     li.textContent = `${book.title} - ${book.author}`;
     booksList.appendChild(li);
   });
+  
+  
+  function addUser() {
+    const newUserFirstName = document.getElementById("new-user-first-name").value;
+    const newUserLastName = document.getElementById("new-user-last-name").value;
+    const newUserAge = document.getElementById("new-user-age").value;
+
+    if (newUserFirstName && newUserLastName && newUserAge) {
+      const newUser = new Reader(newUserFirstName, newUserLastName, parseInt(newUserAge));
+      library.addReader(newUser);
+      updateReaderList();
+      document.getElementById("add-user-form").reset();
+      document.getElementById("add-user-form").style.display = "none";
+    } else {
+      alert("Please fill in all the fields.");
+    }
+  }
