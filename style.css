@@ -7,21 +7,49 @@ body {
     flex-direction: column;
     height: 100vh;
 }
-body > div {
+body > * {
+    display: flex
+}
+#d911 {
     flex: 2;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 15%;
-    border: 1px solid red;
+    margin: 12px;
 }
-body > div > div {
+#d911 > div {
     flex: 1;
-    background-color: antiquewhite;
+    background-color: gainsboro;
+    border: 1px solid gray;
+    border-radius: 16px;
+    padding: 8px;
 }
 ul {
+    font-size: 18px;
     flex: 1;
     list-style-type: none;
     padding: 12px;
     overflow-y: scroll;
+}
+
+ul > li {
+    padding: 2px 8px 2px 8px
+}
+
+ul > * + * {
+    border-style: solid;
+    border-color: #431407;
+    border-right: none;
+    border-left: none;
+    border-top-width: 1px;
+    border-bottom-width: 0px;
+}
+
+ul > :nth-child(even) {
+    background-color: #fdba74;
+}
+
+ul > :nth-child(odd) {
+    background-color: #fff7ed;
 }

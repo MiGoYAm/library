@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <script src="library.js" defer></script>
+  </head>
+  <body>
     <h1>Biblioteka ZSE</h1>
 
-    <div id="911">
-        <div>
-            <h2>Czytelnicy</h2>
-            <ul id="readers"></ul>
-        </div>
-        <div>
-            <h2>Książki</h2>
-            <ul id="books"></ul>
-        </div>
+    <div id="d911">
+      <div>
+        <h2>Czytelnicy</h2>
+        <ul id="readers"></ul>
+      </div>
+      <div>
+        <h2>Książki</h2>
+        <ul id="books"></ul>
+      </div>
     </div>
-</body>
-<script src="library.js"></script>
-<script>
+  </body>
+  <script>
     const readers = [
-        new Reader('Adam', 'Nowak', 40),
-        new Reader('Ewa', 'Kowalska', 45),
-        new Reader('Jan', 'Nowak', 50)
+      new Reader("Adam", "Nowak", 40),
+      new Reader("Ewa", "Kowalska", 45),
+      new Reader("Jan", "Nowak", 50),
     ];
 
     const books = [
-        new Book('Pan Tadeusz', 'Adam Mickiewicz', "1834"),
-        new Book('Ogniem i mieczem', 'Henryk Sienkiewicz', "1884"),
+      new Book("Pan Tadeusz", "Adam Mickiewicz", "1834"),
+      new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884"),
     ];
 
-    const readersList = document.getElementById('readers');
-    const booksList = document.getElementById('books');
+    const readersList = document.getElementById("readers");
+    const booksList = document.getElementById("books");
 
-    for(let i = 0; i < 100; i++) {
-    readers.forEach(reader => {
-        const li = document.createElement('li');
-        li.textContent = `${reader.name} - ${reader.age} lat`;
+    for (let i = 0; i < 100; i++) {
+      readers.forEach((reader) => {
+        const li = document.createElement("li");
+        li.textContent = `${reader.name} ${reader.surename}`;
         readersList.appendChild(li);
-    });
-}
+      });
+    }
 
-    books.forEach(book => {
-        const li = document.createElement('li');
-        li.textContent = `${book.title} - ${book.author}`;
-        booksList.appendChild(li);
+    books.forEach((book) => {
+      const li = document.createElement("li");
+      li.textContent = `${book.title} - ${book.author}`;
+      booksList.appendChild(li);
     });
-</script>
+  </script>
 </html>
