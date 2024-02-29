@@ -1,0 +1,27 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+body > div {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15%;
+    border: 1px solid red;
+}
+body > div > div {
+    flex: 1;
+    background-color: antiquewhite;
+}
+ul {
+    flex: 1;
+    list-style-type: none;
+    padding: 12px;
+    overflow-y: scroll;
+}
