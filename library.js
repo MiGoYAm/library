@@ -67,8 +67,8 @@ const readers = [
     new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884"),
   ];
 
-  const readersList = document.getElementById("readers");
-  const booksList = document.getElementById("books");
+  const readersList = document.getElementById("readersList");
+  const booksList = document.getElementById("booksList");
 
   for (let i = 0; i < 100; i++) {
     readers.forEach((reader) => {

@@ -19,17 +19,25 @@ body > * {
     margin: 12px;
 }
 #d911 > div {
-    flex: 1;
     background-color: gainsboro;
     border: 1px solid gray;
     border-radius: 16px;
-    padding: 8px;
+    padding: 8px 0 8px 0
 }
+#readers {
+    flex: 1;
+}
+#books {
+    flex: 2;
+}
+#readersList, #booksList {
+    overflow-y: scroll;
+}
+
 ul {
     font-size: 18px;
     flex: 1;
     list-style-type: none;
-    padding: 12px;
     overflow-y: scroll;
 }
 
@@ -39,7 +47,7 @@ ul {
 }
 
 ul > li {
-    padding: 2px 8px 2px 8px
+    padding: 2px 16px 2px 16px
 }
 
 ul > * + * {
