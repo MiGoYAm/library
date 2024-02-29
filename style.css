@@ -33,6 +33,11 @@ ul {
     overflow-y: scroll;
 }
 
+#readerDialog::backdrop {
+    opacity: 0.5;
+    background-color: black;
+}
+
 ul > li {
     padding: 2px 8px 2px 8px
 }

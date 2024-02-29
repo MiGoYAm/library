@@ -83,3 +83,10 @@ const readers = [
     li.textContent = `${book.title} - ${book.author}`;
     booksList.appendChild(li);
   });
+
+const readerAddButton = document.getElementById("readerAdd");
+const readerDialog = document.getElementById("readerDialog");
+
+readerAddButton.addEventListener("click", () => {
+    readerDialog.showModal();
+}); 
