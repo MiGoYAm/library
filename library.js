@@ -54,3 +54,32 @@ class Library {
         }
     }
 }
+
+const readers = [
+    new Reader("Adam", "Nowak", 40),
+    new Reader("Ewa", "Kowalska", 45),
+    new Reader("Jan", "Nowak", 50),
+    new Reader("bogdan", "lewandowski", 50),
+  ];
+
+  const books = [
+    new Book("Pan Tadeusz", "Adam Mickiewicz", "1834"),
+    new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884"),
+  ];
+
+  const readersList = document.getElementById("readers");
+  const booksList = document.getElementById("books");
+
+  for (let i = 0; i < 100; i++) {
+    readers.forEach((reader) => {
+      const li = document.createElement("li");
+      li.textContent = `${reader.name} ${reader.surename}`;
+      readersList.appendChild(li);
+    });
+  }
+
+  books.forEach((book) => {
+    const li = document.createElement("li");
+    li.textContent = `${book.title} - ${book.author}`;
+    booksList.appendChild(li);
+  });
