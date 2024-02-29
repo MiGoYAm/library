@@ -70,6 +70,8 @@ const readers = [
 const books = [
     new Book("Pan Tadeusz", "Adam Mickiewicz", "1834"),
     new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884"),
+    new Book("Lalka", "Bolesław Prus", "1890"),
+    new Book("Chłopi", "Władysław Reymont", "1904"),
 ];
 
   const readersList = document.getElementById("readersList");
@@ -80,11 +82,13 @@ for (let i = 0; i < 100; i++) {
         const li = document.createElement("li");
         li.textContent = `${reader.name} ${reader.surname}`;
         readersList.appendChild(li);
+
+    });
+    books.forEach((book) => {
+        const li = document.createElement("li");
+        li.textContent = `${book.title} - ${book.author}`;
+        booksList.appendChild(li);
     });
 }
 
-books.forEach((book) => {
-    const li = document.createElement("li");
-    li.textContent = `${book.title} - ${book.author}`;
-    booksList.appendChild(li);
-});
+
