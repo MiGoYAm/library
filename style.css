@@ -1,53 +1,47 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-}
-body > * {
-    display: flex
+    width: 100vw;
+    padding: 16px;
 }
 #d911 {
-    flex: 2;
+    margin-top: 8px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    gap: 15%;
-    margin: 12px;
+    flex: 1;
+    gap: 10%;
 }
+
 #d911 > div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
     background-color: gainsboro;
     border: 1px solid gray;
     border-radius: 16px;
-    padding: 8px 0 8px 0
-}
-#readers {
-    flex: 1;
-}
-#books {
-    flex: 2;
-}
-#readersList, #booksList {
-    overflow-y: scroll;
+    padding-bottom: 8px;
 }
 
 ul {
     font-size: 18px;
-    flex: 1;
     list-style-type: none;
     overflow-y: scroll;
-}
 
-#readerDialog::backdrop {
-    opacity: 0.5;
-    background-color: black;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    
 }
 
 ul > li {
-    padding: 2px 16px 2px 16px
+    padding: 2px 16px 2px 16px;
 }
 
 ul > * + * {
@@ -65,4 +59,23 @@ ul > :nth-child(even) {
 
 ul > :nth-child(odd) {
     background-color: #fff7ed;
+}
+
+#bar {
+    padding: 8px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+}
+
+#readers {
+    flex: 1;
+}
+#books {
+    flex: 2;
+}
+
+#readerDialog::backdrop {
+    opacity: 0.5;
+    background-color: black;
 }
