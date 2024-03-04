@@ -97,8 +97,21 @@ ul > :nth-child(odd) {
   'opsz' 32
 }
 
+
 header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.wypo{
+    margin-left: 5px;
+    height: 10px;
+    width: 20px;
+    border-radius: 5%;
+}
+.zwrot{
+    margin-left: 25px;
+    height: 10px;
+    width: 20px;
+    border-radius: 5%;
 }
