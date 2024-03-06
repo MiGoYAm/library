@@ -76,13 +76,40 @@ const books = [
   new Book("Chłopi", "Władysław Reymont", "1904"),
 ];
 
+let selectedReader = null;
+let selectedBooks = [];
+
 function render(prefix, list, fn) {
   const ul = document.getElementById(prefix + "List");
   ul.innerHTML = "";
-  list.forEach((item) => {
+
+  list.forEach((item, index) => {
     const li = document.createElement("li");
-    li.textContent = fn(item);
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.id = prefix + index;
+
+    li.appendChild(input);
+    li.innerHTML += fn(item);
     ul.appendChild(li);
+  });
+
+  list.forEach((item, index) => {
+    const input = document.getElementById(prefix + index);
+
+    input.addEventListener("change", (event) => {
+      if (event.target.checked) {
+        if (selectedReader !== null) {
+          const previousSelected = document.getElementById(
+            prefix + selectedReader
+          );
+          previousSelected.checked = false;
+        }
+        selectedReader = index;
+      } else {
+        selectedReader = null;
+      }
+    });
   });
 }
 
