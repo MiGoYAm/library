@@ -26,7 +26,7 @@ body {
 
     background-color: #fafafa;
     border: 1px solid #a3a3a3;
-    border-radius: 16px;
+    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -61,13 +61,6 @@ ul > :nth-child(odd) {
     background-color: #fff7ed;
 }
 
-#bar {
-    padding: 8px;
-    flex-direction: row;
-    display: flex;
-    justify-content: space-between;
-}
-
 #readers {
     flex: 1;
 }
@@ -75,9 +68,11 @@ ul > :nth-child(odd) {
     flex: 2;
 }
 
-#readerDialog::backdrop {
-    opacity: 0.5;
-    background-color: black;
+#bar {
+    padding: 8px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
 }
 
 #bar > button {
@@ -97,21 +92,35 @@ ul > :nth-child(odd) {
   'opsz' 32
 }
 
-
 header {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-items: end;
+    gap: 16px;
 }
-.wypo{
-    margin-left: 5px;
-    height: 10px;
-    width: 20px;
-    border-radius: 5%;
+
+header > h1 {
+    margin-right: auto;
 }
-.zwrot{
-    margin-left: 25px;
-    height: 10px;
-    width: 20px;
-    border-radius: 5%;
+
+header > button {
+    align-self: center;
+
+    padding: 4px 8px 4px 8px;
+    border-radius: 2px;
+}
+
+dialog {
+    margin: auto;
+}
+
+dialog > form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+}
+
+dialog::backdrop {
+    opacity: 0.5;
+    background-color: black;
 }

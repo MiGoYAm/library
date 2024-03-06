@@ -31,19 +31,64 @@
         <div id="bar">
           <h2>Czytelnicy</h2>
           <button id="readerAdd" class="material-symbols-rounded">add</button>
-          <dialog id="readerDialog"></dialog>
+          <dialog id="readerDialog">
+            <form id="readerForm" method="modal">
+              <input
+                type="text"
+                id="readerName"
+                placeholder="Imię"
+                name="name"
+              />
+              <input
+                type="text"
+                id="readerSurname"
+                placeholder="Nazwisko"
+                name="surname"
+              />
+              <input
+                type="number"
+                id="readerAge"
+                placeholder="Wiek"
+                name="age"
+              />
+              <button type="submit">Dodaj</button>
+            </form>
+          </dialog>
         </div>
 
-        <ul id="readersList"></ul>
+        <ul id="readerList"></ul>
       </div>
+
       <div id="books">
         <div id="bar">
           <h2>Książki</h2>
           <button id="bookAdd" class="material-symbols-rounded">add</button>
-          <dialog id="bookDialog"></dialog>
+          <dialog id="bookDialog">
+            <form id="bookForm" method="modal">
+              <input
+                type="text"
+                id="bookTitle"
+                placeholder="Tytuł"
+                name="title"
+              />
+              <input
+                type="text"
+                id="bookAuthor"
+                placeholder="Autor"
+                name="author"
+              />
+              <input
+                type="number"
+                id="bookYear"
+                placeholder="Rok wydania"
+                name="rokWydania"
+              />
+              <button type="submit">Dodaj</button>
+            </form>
+          </dialog>
         </div>
 
-        <ul id="booksList"></ul>
+        <ul id="bookList"></ul>
       </div>
     </main>
   </body>
