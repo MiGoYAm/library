@@ -25,7 +25,6 @@ class Reader {
   borrowBook(book) {
     if (book.available) {
       this.history.push(book);
-      book.available = false;
     }
   }
 
@@ -44,21 +43,7 @@ class Library {
 
   addBook(...book) {
     this.books.push(...book);
-    this.books.sort((a, b) => {
-      if (a.available && !b.available) {
-        return -1;
-      } else if (!a.available && b.available) {
-        return 1;
-      }
-
-      if (a.title < b.title) {
-        return -1;
-      } else if (a.title > b.title) {
-        return 1;
-      }
-
-      return 0;
-    });
+    this._sortBooks();
   }
 
   addReader(...reader) {
@@ -81,15 +66,47 @@ class Library {
     });
   }
 
-  loanBook(book, reader) {
-    if (
-      this.books.some((b) => b === book) &&
-      this.readers.some((r) => r === reader) &&
-      book.available
-    ) {
-      reader.history.push(book);
-      reader.borrowBook(book);
+  _sortBooks() {
+    this.books.sort((a, b) => {
+      if (a.available && !b.available) {
+        return -1;
+      } else if (!a.available && b.available) {
+        return 1;
+      }
+
+      if (a.title < b.title) {
+        return -1;
+      } else if (a.title > b.title) {
+        return 1;
+      }
+      this.books.sort((a, b) => {
+        if (a.available && !b.available) {
+          return -1;
+        } else if (!a.available && b.available) {
+          return 1;
+        }
+
+        if (a.title < b.title) {
+          return -1;
+        } else if (a.title > b.title) {
+          return 1;
+        }
+
+        return 0;
+      });
+      return 0;
+    });
+  }
+
+  loanBook(reader, ...books) {
+    for (const book of books) {
+      if (book.available) {
+        reader.history.push(book);
+        reader.borrowBook(book);
+        book.available = false;
+      }
     }
+    this._sortBooks();
   }
 }
 
@@ -107,8 +124,8 @@ library.addReader(
   new Reader("Rafał", "Mazurek", 40)
 );
 library.addBook(
-  new Book("Pan Tadeusz", "Adam Mickiewicz", "1834", false),
-  new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884", false),
+  new Book("Pan Tadeusz", "Adam Mickiewicz", "1834"),
+  new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884"),
   new Book("Lalka", "Bolesław Prus", "1890"),
   new Book("Chłopi", "Władysław Reymont", "1904"),
   new Book("Pan Samochodzik i templariusze", "Zbigniew Nienacki", "1962"),
@@ -216,7 +233,6 @@ function renderBooks(book) {
         const i = selectedBooks.indexOf(item);
         selectedBooks.splice(i, 1);
       }
-      console.log(selectedBooks);
     }
   );
 }
@@ -258,3 +274,9 @@ addForm("book", renderBooks);
 
 addModal("reader");
 addModal("book");
+
+const button = document.getElementById("wypo");
+button.addEventListener("click", (event) => {
+  library.loanBook(library.readers[selectedReader], ...selectedBooks);
+  renderBooks();
+});
