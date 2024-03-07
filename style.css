@@ -95,7 +95,7 @@ ul > :nth-child(odd) {
 header {
     display: flex;
     justify-items: end;
-    gap: 16px;
+    gap: 24px;
 }
 
 header > h1 {
@@ -103,24 +103,77 @@ header > h1 {
 }
 
 header > button {
-    align-self: center;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #4CAF50;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
 
-    padding: 4px 8px 4px 8px;
-    border-radius: 2px;
+header > button:hover{
+    background-color: #45a049;
+  color: #fff;
+  transform: scale(1.1);
 }
 
 dialog {
     margin: auto;
+    border-radius: 10px;
+    background-color: #f8f9fa; /* Jasny kolor tła */
+    padding: 20px;
+    max-width: 400px; /* Maksymalna szerokość dialogu */
 }
 
 dialog > form {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 16px;
+    gap: 16px;
 }
 
 dialog::backdrop {
-    opacity: 0.5;
-    background-color: black;
+    opacity: 0.7;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+dialog > form h2 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+dialog > form input {
+    padding: 12px;
+    border: 1px solid #ced4da; /* Jasny kolor obramowania */
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+dialog > form input:hover,
+dialog > form input:focus {
+    border-color: #007bff;
+    transform: scale(1.05);
+}
+
+dialog > form button {
+    padding: 14px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+dialog > form button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
