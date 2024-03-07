@@ -82,6 +82,7 @@ ul > :nth-child(odd) {
     color: white;
     width: 32px;
     height: 32px;
+    outline: none;
 }
 
 .material-symbols-rounded {
