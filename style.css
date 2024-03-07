@@ -2,15 +2,19 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Lexend';
+    font-family: 'Lexend', sans-serif;
 }
+
 body {
     display: flex;
     flex-direction: column;
     height: 100vh;
     width: 100vw;
     padding: 16px;
+    background-color: #282c35; /* Ciemny kolor tła */
+    color: #ffffff; /* Kolor tekstu */
 }
+
 #d911 {
     margin-top: 8px;
     display: flex;
@@ -23,9 +27,8 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-
-    background-color: #fafafa;
-    border: 1px solid #a3a3a3;
+    background-color: #333; /* Ciemny kolor tła bloków */
+    border: 1px solid #555; /* Kolor ramki bloków */
     border-radius: 8px;
     overflow: hidden;
 }
@@ -34,19 +37,18 @@ ul {
     font-size: 18px;
     list-style-type: none;
     overflow-y: scroll;
-
     display: flex;
     flex-direction: column;
     flex: 1 1 0;
 }
 
 ul > li {
-    padding: 2px 16px 2px 16px;
+    padding: 2px 16px;
 }
 
 ul > * + * {
     border-style: solid;
-    border-color: #431407;
+    border-color: #123456; /* Odcień niebieskiego */
     border-right: none;
     border-left: none;
     border-top-width: 1px;
@@ -54,53 +56,55 @@ ul > * + * {
 }
 
 ul > :nth-child(even) {
-    background-color: #fdba74;
+    background-color: #456789; /* Jasny odcień niebieskiego */
 }
 
 ul > :nth-child(odd) {
-    background-color: #fff7ed;
+    background-color: #56789a; /* Inny odcień niebieskiego */
 }
 
 #readers {
     flex: 1;
 }
+
 #books {
     flex: 2;
 }
 
 #bar {
     padding: 8px;
-    flex-direction: row;
     display: flex;
     justify-content: space-between;
+    background-color: #1e1e1e; /* Ciemny kolor tła paska narzędziowego */
 }
 
 #bar > button {
     border-radius: 50px;
     border: none;
-    background-color: grey;
-    color: white;
+    background-color: #555; /* Ciemny kolor przycisku */
+    color: #ffffff;
     width: 32px;
     height: 32px;
     outline: none;
 }
 
 .material-symbols-rounded {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 32
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 32;
 }
 
 header {
     display: flex;
-    justify-items: end;
+    justify-content: flex-end;
     gap: 24px;
 }
 
 header > h1 {
     margin-right: auto;
+    color: #ffffff; /* Kolor tekstu nagłówka */
 }
 
 header > button {
@@ -110,26 +114,26 @@ header > button {
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    border: 2px solid #4CAF50;
+    border: 2px solid #007bff; /* Odcień niebieskiego */
     border-radius: 5px;
     color: #fff;
-    background-color: #4CAF50;
+    background-color: #007bff;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
-header > button:hover{
-    background-color: #45a049;
-  color: #fff;
-  transform: scale(1.1);
+header > button:hover {
+    background-color: #0056b3; /* Ciemniejszy odcień niebieskiego */
+    color: #fff;
+    transform: scale(1.1);
 }
 
 dialog {
     margin: auto;
     border-radius: 10px;
-    background-color: #f8f9fa; /* Jasny kolor tła */
+    background-color: #f8f9fa;
     padding: 20px;
-    max-width: 400px; /* Maksymalna szerokość dialogu */
+    max-width: 400px;
 }
 
 dialog > form {
@@ -151,7 +155,7 @@ dialog > form h2 {
 
 dialog > form input {
     padding: 12px;
-    border: 1px solid #ced4da; /* Jasny kolor obramowania */
+    border: 1px solid #ced4da;
     border-radius: 8px;
     font-size: 16px;
     transition: border-color 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -177,4 +181,16 @@ dialog > form button {
 dialog > form button:hover {
     background-color: #0056b3;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #007bff; 
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
 }
