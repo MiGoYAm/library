@@ -148,7 +148,7 @@ library.addBook(
 let selectedReader = null;
 let selectedBooks = [];
 
-function render(prefix, list, fn, changeFn) {
+function render(prefix, list, selectableFn, fn, changeFn) {
   const ul = document.getElementById(prefix + "List");
   ul.innerHTML = "";
 
@@ -156,6 +156,7 @@ function render(prefix, list, fn, changeFn) {
     const li = document.createElement("li");
     const input = document.createElement("input");
     input.type = "checkbox";
+    input.disabled = !selectableFn(item);
     input.id = prefix + index;
 
     li.appendChild(input);
@@ -180,6 +181,7 @@ function renderReaders(reader) {
   render(
     "reader",
     library.readers,
+    (reader) => true,
     (reader) => `${reader.name} ${reader.surname}`,
     (item, index, checked) => {
       if (checked) {
@@ -205,6 +207,7 @@ function renderBooks(book) {
   render(
     "book",
     library.books,
+    (book) => book.available,
     (book) => `${book.title} ${book.author} ${book.rokWydania}r.`,
     (item, index, checked) => {
       if (checked) {
