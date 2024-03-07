@@ -45,18 +45,40 @@ class Library {
   addBook(...book) {
     this.books.push(...book);
     this.books.sort((a, b) => {
-      if (a.available && b.available) {
-        return 0;
-      } else if (a.available && !b.available) {
+      if (a.available && !b.available) {
         return -1;
       } else if (!a.available && b.available) {
         return 1;
       }
+
+      if (a.title < b.title) {
+        return -1;
+      } else if (a.title > b.title) {
+        return 1;
+      }
+
+      return 0;
     });
   }
 
   addReader(...reader) {
     this.readers.push(...reader);
+
+    this.readers.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      } else if (a.name > b.name) {
+        return 1;
+      }
+
+      if (a.surname < b.surname) {
+        return -1;
+      } else if (a.surname > b.surname) {
+        return 1;
+      }
+
+      return 0;
+    });
   }
 
   loanBook(book, reader) {
@@ -82,7 +104,7 @@ library.addReader(
   new Reader("Magdalena", "Zielińska", 55),
   new Reader("Piotr", "Dąbrowski", 60),
   new Reader("Zofia", "Głowacka", 31),
-  new Reader("Rafał", "Mazurek", 40),
+  new Reader("Rafał", "Mazurek", 40)
 );
 library.addBook(
   new Book("Pan Tadeusz", "Adam Mickiewicz", "1834", false),
@@ -120,7 +142,7 @@ library.addBook(
   new Book("Balladyna", "Juliusz Słowacki", "1839"),
   new Book("Przedwiośnie", "Stefan Żeromski", "1924"),
   new Book("Ludzie bezdomni", "Stefan Żeromski", "1900"),
-  new Book("Przygody Tomka Sawyera", "Mark Twain", "1876"),
+  new Book("Przygody Tomka Sawyera", "Mark Twain", "1876")
 );
 
 let selectedReader = null;
