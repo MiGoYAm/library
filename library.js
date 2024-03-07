@@ -1,10 +1,9 @@
 class Book {
-  available = true;
-
-  constructor(title, author, rokWydania) {
+  constructor(title, author, rokWydania, available = true) {
     this.title = title;
     this.author = author;
     this.rokWydania = rokWydania;
+    this.available = available;
   }
 
   displayInfo() {
@@ -25,6 +24,7 @@ class Reader {
 
   borrowBook(book) {
     if (book.available) {
+      this.history.push(book);
       book.available = false;
     }
   }
@@ -42,12 +42,21 @@ class Library {
 
   constructor() {}
 
-  addBook(book) {
-    this.books.push(book);
+  addBook(...book) {
+    this.books.push(...book);
+    this.books.sort((a, b) => {
+      if (a.available && b.available) {
+        return 0;
+      } else if (a.available && !b.available) {
+        return -1;
+      } else if (!a.available && b.available) {
+        return 1;
+      }
+    });
   }
 
-  addReader(reader) {
-    this.readers.push(reader);
+  addReader(...reader) {
+    this.readers.push(...reader);
   }
 
   loanBook(book, reader) {
@@ -62,24 +71,24 @@ class Library {
   }
 }
 
-const readers = [
+const library = new Library();
+library.addReader(
   new Reader("Adam", "Nowak", 40),
   new Reader("Ewa", "Kowalska", 45),
   new Reader("Jan", "Nowak", 50),
-  new Reader("Bogdan", "Lewandowski", 50),
-];
-
-const books = [
-  new Book("Pan Tadeusz", "Adam Mickiewicz", "1834"),
-  new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884"),
+  new Reader("Bogdan", "Lewandowski", 50)
+);
+library.addBook(
+  new Book("Pan Tadeusz", "Adam Mickiewicz", "1834", false),
+  new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884", false),
   new Book("Lalka", "Bolesław Prus", "1890"),
-  new Book("Chłopi", "Władysław Reymont", "1904"),
-];
+  new Book("Chłopi", "Władysław Reymont", "1904")
+);
 
 let selectedReader = null;
 let selectedBooks = [];
 
-function render(prefix, list, fn) {
+function render(prefix, list, fn, changeFn) {
   const ul = document.getElementById(prefix + "List");
   ul.innerHTML = "";
 
@@ -98,17 +107,7 @@ function render(prefix, list, fn) {
     const input = document.getElementById(prefix + index);
 
     input.addEventListener("change", (event) => {
-      if (event.target.checked) {
-        if (selectedReader !== null) {
-          const previousSelected = document.getElementById(
-            prefix + selectedReader
-          );
-          previousSelected.checked = false;
-        }
-        selectedReader = index;
-      } else {
-        selectedReader = null;
-      }
+      changeFn(item, index, event.target.checked);
     });
   });
 }
@@ -116,17 +115,47 @@ function render(prefix, list, fn) {
 function renderReaders(reader) {
   if (reader) {
     reader = new Reader(reader.name, reader.surname, reader.age);
-    readers.push(reader);
+    library.readers.push(reader);
   }
-  render("reader", readers, (reader) => `${reader.name} ${reader.surname}`);
+  render(
+    "reader",
+    library.readers,
+    (reader) => `${reader.name} ${reader.surname}`,
+    (item, index, checked) => {
+      if (checked) {
+        if (selectedReader !== null) {
+          const previousSelected = document.getElementById(
+            "reader" + selectedReader
+          );
+          previousSelected.checked = false;
+        }
+        selectedReader = index;
+      } else {
+        selectedReader = null;
+      }
+    }
+  );
 }
 
 function renderBooks(book) {
   if (book) {
     book = new Book(book.title, book.author, book.rokWydania);
-    books.push(book);
+    library.books.push(book);
   }
-  render("book", books, (book) => `${book.title} ${book.author}`);
+  render(
+    "book",
+    library.books,
+    (book) => `${book.title} ${book.author} ${book.rokWydania}r.`,
+    (item, index, checked) => {
+      if (checked) {
+        selectedBooks.push(item);
+      } else {
+        const i = selectedBooks.indexOf(item);
+        selectedBooks.splice(i, 1);
+      }
+      console.log(selectedBooks);
+    }
+  );
 }
 
 function addForm(prefix, renderFn) {
