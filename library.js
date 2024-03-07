@@ -175,9 +175,11 @@ function render(prefix, list, selectableFn, fn, changeFn) {
     input.type = "checkbox";
     input.disabled = !selectableFn(item);
     input.id = prefix + index;
+    const label = document.createElement("label");
 
-    li.appendChild(input);
-    li.innerHTML += fn(item);
+    label.appendChild(input);
+    label.innerHTML += fn(item);
+    li.appendChild(label);
     ul.appendChild(li);
   });
 
@@ -199,7 +201,7 @@ function renderReaders(reader) {
     "reader",
     library.readers,
     (reader) => true,
-    (reader) => `${reader.name} ${reader.surname}`,
+    (reader) => `<p>${reader.name}</p><p>${reader.surname}</p>`,
     (item, index, checked) => {
       if (checked) {
         if (selectedReader !== null) {
@@ -225,7 +227,7 @@ function renderBooks(book) {
     "book",
     library.books,
     (book) => book.available,
-    (book) => `${book.title} ${book.author} ${book.rokWydania}r.`,
+    (book) => `<p>${book.title}</p><p>${book.author}</p><p>${book.rokWydania}r.</p>`,
     (item, index, checked) => {
       if (checked) {
         selectedBooks.push(item);
