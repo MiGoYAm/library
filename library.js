@@ -39,11 +39,16 @@ class Library {
   books = [];
   readers = [];
 
-  constructor() {}
+  constructor() {
+    this.books = JSON.parse(localStorage.getItem("books")) || [];
+    this.readers = JSON.parse(localStorage.getItem("readers")) || [];
+  }
 
   addBook(...book) {
     this.books.push(...book);
     this._sortBooks();
+
+    localStorage.setItem("books", JSON.stringify(this.books));
   }
 
   addReader(...reader) {
@@ -64,6 +69,8 @@ class Library {
 
       return 0;
     });
+
+    localStorage.setItem("readers", JSON.stringify(this.readers));
   }
 
   _sortBooks() {
@@ -111,56 +118,56 @@ class Library {
 }
 
 const library = new Library();
-library.addReader(
-  new Reader("Adam", "Nowak", 40),
-  new Reader("Ewa", "Kowalska", 45),
-  new Reader("Jan", "Nowak", 50),
-  new Reader("Bogdan", "Lewandowski", 50),
-  new Reader("Anna", "Wójcik", 35),
-  new Reader("Tomasz", "Kowalczyk", 28),
-  new Reader("Magdalena", "Zielińska", 55),
-  new Reader("Piotr", "Dąbrowski", 60),
-  new Reader("Zofia", "Głowacka", 31),
-  new Reader("Rafał", "Mazurek", 40)
-);
-library.addBook(
-  new Book("Pan Tadeusz", "Adam Mickiewicz", "1834"),
-  new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884"),
-  new Book("Lalka", "Bolesław Prus", "1890"),
-  new Book("Chłopi", "Władysław Reymont", "1904"),
-  new Book("Pan Samochodzik i templariusze", "Zbigniew Nienacki", "1962"),
-  new Book("Opowieści z Narnii", "C.S. Lewis", "1950"),
-  new Book("Kroniki rodzinne", "Maria Dąbrowska", "1957"),
-  new Book("Cienka czerwona linia", "James Jones", "1962"),
-  new Book("Wiatr wierzbowy", "Kazimierz Brandys", "1963"),
-  new Book("Zbrodnia i kara", "Fiodor Dostojewski", "1866"),
-  new Book("Mistrz i Małgorzata", "Michaił Bułhakow", "1967"),
-  new Book("Rok 1984", "George Orwell", "1949"),
-  new Book("Ojciec chrzestny", "Mario Puzo", "1969"),
-  new Book("To", "Stephen King", "1986"),
-  new Book("Pan Wołodyjowski", "Henryk Sienkiewicz", "1888"),
-  new Book("Kamienie na szaniec", "Aleksander Kamiński", "1943"),
-  new Book("Szkice węglem", "Stefan Żeromski", "1904"),
-  new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "1912"),
-  new Book("Potop", "Henryk Sienkiewicz", "1886"),
-  new Book("Sklepy cynamonowe", "Bruno Schulz", "1934"),
-  new Book("Ogniem i słowem", "Henryk Sienkiewicz", "1875"),
-  new Book("Nad Niemnem", "Eliza Orzeszkowa", "1888"),
-  new Book("Ferdydurke", "Witold Gombrowicz", "1937"),
-  new Book("Wiedźmin", "Andrzej Sapkowski", "1993"),
-  new Book("Dżuma", "Albert Camus", "1947"),
-  new Book("Dziady", "Adam Mickiewicz", "1822"),
-  new Book("Quo Vadis", "Henryk Sienkiewicz", "1896"),
-  new Book("Faraon", "Bolesław Prus", "1897"),
-  new Book("Ziemia obiecana", "Władysław Reymont", "1899"),
-  new Book("Kordian", "Juliusz Słowacki", "1833"),
-  new Book("Krzyżacy", "Henryk Sienkiewicz", "1900"),
-  new Book("Wesele", "Stanisław Wyspiański", "1901"),
-  new Book("Balladyna", "Juliusz Słowacki", "1839"),
-  new Book("Przedwiośnie", "Stefan Żeromski", "1924"),
-  new Book("Ludzie bezdomni", "Stefan Żeromski", "1900"),
-  new Book("Przygody Tomka Sawyera", "Mark Twain", "1876")
-);
+// library.addReader(
+//   new Reader("Adam", "Nowak", 40),
+//   new Reader("Ewa", "Kowalska", 45),
+//   new Reader("Jan", "Nowak", 50),
+//   new Reader("Bogdan", "Lewandowski", 50),
+//   new Reader("Anna", "Wójcik", 35),
+//   new Reader("Tomasz", "Kowalczyk", 28),
+//   new Reader("Magdalena", "Zielińska", 55),
+//   new Reader("Piotr", "Dąbrowski", 60),
+//   new Reader("Zofia", "Głowacka", 31),
+//   new Reader("Rafał", "Mazurek", 40)
+// );
+// library.addBook(
+//   new Book("Pan Tadeusz", "Adam Mickiewicz", "1834"),
+//   new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884"),
+//   new Book("Lalka", "Bolesław Prus", "1890"),
+//   new Book("Chłopi", "Władysław Reymont", "1904"),
+//   new Book("Pan Samochodzik i templariusze", "Zbigniew Nienacki", "1962"),
+//   new Book("Opowieści z Narnii", "C.S. Lewis", "1950"),
+//   new Book("Kroniki rodzinne", "Maria Dąbrowska", "1957"),
+//   new Book("Cienka czerwona linia", "James Jones", "1962"),
+//   new Book("Wiatr wierzbowy", "Kazimierz Brandys", "1963"),
+//   new Book("Zbrodnia i kara", "Fiodor Dostojewski", "1866"),
+//   new Book("Mistrz i Małgorzata", "Michaił Bułhakow", "1967"),
+//   new Book("Rok 1984", "George Orwell", "1949"),
+//   new Book("Ojciec chrzestny", "Mario Puzo", "1969"),
+//   new Book("To", "Stephen King", "1986"),
+//   new Book("Pan Wołodyjowski", "Henryk Sienkiewicz", "1888"),
+//   new Book("Kamienie na szaniec", "Aleksander Kamiński", "1943"),
+//   new Book("Szkice węglem", "Stefan Żeromski", "1904"),
+//   new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "1912"),
+//   new Book("Potop", "Henryk Sienkiewicz", "1886"),
+//   new Book("Sklepy cynamonowe", "Bruno Schulz", "1934"),
+//   new Book("Ogniem i słowem", "Henryk Sienkiewicz", "1875"),
+//   new Book("Nad Niemnem", "Eliza Orzeszkowa", "1888"),
+//   new Book("Ferdydurke", "Witold Gombrowicz", "1937"),
+//   new Book("Wiedźmin", "Andrzej Sapkowski", "1993"),
+//   new Book("Dżuma", "Albert Camus", "1947"),
+//   new Book("Dziady", "Adam Mickiewicz", "1822"),
+//   new Book("Quo Vadis", "Henryk Sienkiewicz", "1896"),
+//   new Book("Faraon", "Bolesław Prus", "1897"),
+//   new Book("Ziemia obiecana", "Władysław Reymont", "1899"),
+//   new Book("Kordian", "Juliusz Słowacki", "1833"),
+//   new Book("Krzyżacy", "Henryk Sienkiewicz", "1900"),
+//   new Book("Wesele", "Stanisław Wyspiański", "1901"),
+//   new Book("Balladyna", "Juliusz Słowacki", "1839"),
+//   new Book("Przedwiośnie", "Stefan Żeromski", "1924"),
+//   new Book("Ludzie bezdomni", "Stefan Żeromski", "1900"),
+//   new Book("Przygody Tomka Sawyera", "Mark Twain", "1876")
+// );
 
 let selectedReader = null;
 let selectedBooks = [];
@@ -227,7 +234,8 @@ function renderBooks(book) {
     "book",
     library.books,
     (book) => book.available,
-    (book) => `<p>${book.title}</p><p>${book.author}</p><p>${book.rokWydania}r.</p>`,
+    (book) =>
+      `<p>${book.title}</p><p>${book.author}</p><p>${book.rokWydania}r.</p>`,
     (item, index, checked) => {
       if (checked) {
         selectedBooks.push(item);
