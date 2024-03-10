@@ -122,6 +122,10 @@ header > button {
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
+.clicked {
+    transform: scale(0.7);
+}
+
 header > button:hover {
     background-color: #0056b3; /* Ciemniejszy odcień niebieskiego */
     color: #fff;

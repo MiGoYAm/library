@@ -14,34 +14,39 @@ class Book {
 }
 
 class Reader {
-  history = [];
-
-  constructor(name, surname, age) {
+  constructor(name, surname, age, history = []) {
     this.name = name;
     this.surname = surname;
     this.age = age;
+    this.history = history;
   }
 
   borrowBook(book) {
     if (book.available) {
       this.history.push(book);
+      book.available = false;
     }
   }
 
   returnBook(book) {
-    if (!book.available) {
+    if (!book.available && this.history.includes(book)) {
+      const index = this.history.indexOf(book);
+      this.history.splice(index, 1);
       book.available = true;
     }
   }
 }
 
 class Library {
-  books = [];
-  readers = [];
-
   constructor() {
     this.books = JSON.parse(localStorage.getItem("books")) || [];
+    this.books = this.books.map(
+      (b) => new Book(b.title, b.author, b.rokWydania, b.available)
+    );
     this.readers = JSON.parse(localStorage.getItem("readers")) || [];
+    this.readers = this.readers.map(
+      (r) => new Reader(r.name, r.surname, r.age, r.history)
+    );
   }
 
   addBook(...book) {
@@ -107,13 +112,21 @@ class Library {
 
   loanBook(reader, ...books) {
     for (const book of books) {
-      if (book.available) {
-        reader.history.push(book);
-        reader.borrowBook(book);
-        book.available = false;
-      }
+      reader.borrowBook(book);
     }
     this._sortBooks();
+    localStorage.setItem("books", JSON.stringify(this.books));
+    localStorage.setItem("readers", JSON.stringify(this.readers));
+  }
+
+  returnBook(reader, ...books) {
+    for (const book of books) {
+      reader.returnBook(book);
+      book.available = true;
+    }
+    this._sortBooks();
+    localStorage.setItem("books", JSON.stringify(this.books));
+    localStorage.setItem("readers", JSON.stringify(this.readers));
   }
 }
 
@@ -171,6 +184,7 @@ const library = new Library();
 
 let selectedReader = null;
 let selectedBooks = [];
+let selectedMode = ""; // "loan" | "return"
 
 function render(prefix, list, selectableFn, fn, changeFn) {
   const ul = document.getElementById(prefix + "List");
@@ -213,11 +227,11 @@ function renderReaders(reader) {
       if (checked) {
         if (selectedReader !== null) {
           const previousSelected = document.getElementById(
-            "reader" + selectedReader
+            "reader" + library.rea.indexOf(selectedReader)
           );
           previousSelected.checked = false;
         }
-        selectedReader = index;
+        selectedReader = library.readers[index];
       } else {
         selectedReader = null;
       }
@@ -225,15 +239,18 @@ function renderReaders(reader) {
   );
 }
 
-function renderBooks(book) {
-  if (book) {
-    book = new Book(book.title, book.author, book.rokWydania);
-    library.books.push(book);
-  }
+function renderBooks() {
   render(
     "book",
-    library.books,
-    (book) => book.available,
+    selectedMode === "return" ? selectedReader.history : library.books,
+    (book) => {
+      if (selectedMode === "loan") {
+        return book.available;
+      } else if (selectedMode === "return") {
+        return selectedReader.history.includes(book);
+      }
+      return false;
+    },
     (book) =>
       `<p>${book.title}</p><p>${book.author}</p><p>${book.rokWydania}r.</p>`,
     (item, index, checked) => {
@@ -285,8 +302,38 @@ addForm("book", renderBooks);
 addModal("reader");
 addModal("book");
 
-const button = document.getElementById("wypo");
-button.addEventListener("click", (event) => {
-  library.loanBook(library.readers[selectedReader], ...selectedBooks);
-  renderBooks();
+const wypo = document.getElementById("wypo");
+const zwrot = document.getElementById("zwrot");
+const accept = document.getElementById("accept");
+wypo.addEventListener("click", (event) => {
+  if (selectedReader) {
+    selectedMode = "loan";
+    event.target.classList.add("clicked");
+    zwrot.classList.remove("clicked");
+    renderBooks();
+  }
+});
+zwrot.addEventListener("click", (event) => {
+  if (selectedReader) {
+    selectedMode = "return";
+    event.target.classList.add("clicked");
+    wypo.classList.remove("clicked");
+    renderBooks();
+  }
+});
+accept.addEventListener("click", (event) => {
+  if (selectedReader) {
+    if (selectedMode === "loan") {
+      library.loanBook(selectedReader, ...selectedBooks);
+    } else if (selectedMode === "return") {
+      library.returnBook(selectedReader, ...selectedBooks);
+    }
+    renderBooks();
+    renderReaders();
+    selectedMode = "";
+    wypo.classList.remove("clicked");
+    zwrot.classList.remove("clicked");
+    selectedReader = null;
+    selectedBooks = [];
+  }
 });
