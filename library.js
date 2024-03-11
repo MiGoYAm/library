@@ -75,9 +75,7 @@ class Library {
       return 0;
     });
 
-    console.log("zapisywania");
     localStorage.setItem("readers", JSON.stringify(this.readers));
-    console.log("zapisano");
   }
 
   _sortBooks() {
@@ -276,7 +274,6 @@ function addForm(prefix, createFn) {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log("submit");
 
     const formData = new FormData(form);
 
@@ -303,11 +300,11 @@ function addModal(prefix) {
 renderReaders();
 renderBooks();
 
-addForm("reader", renderReaders, (data) => {
+addForm("reader", (data) => {
   library.addReader(new Reader(data.name, data.surname, data.age));
   renderReaders();
 });
-addForm("book", renderBooks, (data) => {
+addForm("book", (data) => {
   library.addBook(new Book(data.title, data.author, data.rokWydania));
   renderBooks();
 });
