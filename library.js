@@ -75,7 +75,9 @@ class Library {
       return 0;
     });
 
+    console.log("zapisywania");
     localStorage.setItem("readers", JSON.stringify(this.readers));
+    console.log("zapisano");
   }
 
   _sortBooks() {
@@ -131,56 +133,60 @@ class Library {
 }
 
 const library = new Library();
-// library.addReader(
-//   new Reader("Adam", "Nowak", 40),
-//   new Reader("Ewa", "Kowalska", 45),
-//   new Reader("Jan", "Nowak", 50),
-//   new Reader("Bogdan", "Lewandowski", 50),
-//   new Reader("Anna", "Wójcik", 35),
-//   new Reader("Tomasz", "Kowalczyk", 28),
-//   new Reader("Magdalena", "Zielińska", 55),
-//   new Reader("Piotr", "Dąbrowski", 60),
-//   new Reader("Zofia", "Głowacka", 31),
-//   new Reader("Rafał", "Mazurek", 40)
-// );
-// library.addBook(
-//   new Book("Pan Tadeusz", "Adam Mickiewicz", "1834"),
-//   new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884"),
-//   new Book("Lalka", "Bolesław Prus", "1890"),
-//   new Book("Chłopi", "Władysław Reymont", "1904"),
-//   new Book("Pan Samochodzik i templariusze", "Zbigniew Nienacki", "1962"),
-//   new Book("Opowieści z Narnii", "C.S. Lewis", "1950"),
-//   new Book("Kroniki rodzinne", "Maria Dąbrowska", "1957"),
-//   new Book("Cienka czerwona linia", "James Jones", "1962"),
-//   new Book("Wiatr wierzbowy", "Kazimierz Brandys", "1963"),
-//   new Book("Zbrodnia i kara", "Fiodor Dostojewski", "1866"),
-//   new Book("Mistrz i Małgorzata", "Michaił Bułhakow", "1967"),
-//   new Book("Rok 1984", "George Orwell", "1949"),
-//   new Book("Ojciec chrzestny", "Mario Puzo", "1969"),
-//   new Book("To", "Stephen King", "1986"),
-//   new Book("Pan Wołodyjowski", "Henryk Sienkiewicz", "1888"),
-//   new Book("Kamienie na szaniec", "Aleksander Kamiński", "1943"),
-//   new Book("Szkice węglem", "Stefan Żeromski", "1904"),
-//   new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "1912"),
-//   new Book("Potop", "Henryk Sienkiewicz", "1886"),
-//   new Book("Sklepy cynamonowe", "Bruno Schulz", "1934"),
-//   new Book("Ogniem i słowem", "Henryk Sienkiewicz", "1875"),
-//   new Book("Nad Niemnem", "Eliza Orzeszkowa", "1888"),
-//   new Book("Ferdydurke", "Witold Gombrowicz", "1937"),
-//   new Book("Wiedźmin", "Andrzej Sapkowski", "1993"),
-//   new Book("Dżuma", "Albert Camus", "1947"),
-//   new Book("Dziady", "Adam Mickiewicz", "1822"),
-//   new Book("Quo Vadis", "Henryk Sienkiewicz", "1896"),
-//   new Book("Faraon", "Bolesław Prus", "1897"),
-//   new Book("Ziemia obiecana", "Władysław Reymont", "1899"),
-//   new Book("Kordian", "Juliusz Słowacki", "1833"),
-//   new Book("Krzyżacy", "Henryk Sienkiewicz", "1900"),
-//   new Book("Wesele", "Stanisław Wyspiański", "1901"),
-//   new Book("Balladyna", "Juliusz Słowacki", "1839"),
-//   new Book("Przedwiośnie", "Stefan Żeromski", "1924"),
-//   new Book("Ludzie bezdomni", "Stefan Żeromski", "1900"),
-//   new Book("Przygody Tomka Sawyera", "Mark Twain", "1876")
-// );
+if (library.readers.length === 0) {
+  library.addReader(
+    new Reader("Adam", "Nowak", 40),
+    new Reader("Ewa", "Kowalska", 45),
+    new Reader("Jan", "Nowak", 50),
+    new Reader("Bogdan", "Lewandowski", 50),
+    new Reader("Anna", "Wójcik", 35),
+    new Reader("Tomasz", "Kowalczyk", 28),
+    new Reader("Magdalena", "Zielińska", 55),
+    new Reader("Piotr", "Dąbrowski", 60),
+    new Reader("Zofia", "Głowacka", 31),
+    new Reader("Rafał", "Mazurek", 40)
+  );
+}
+if (library.books.length === 0) {
+  library.addBook(
+    new Book("Pan Tadeusz", "Adam Mickiewicz", "1834"),
+    new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "1884"),
+    new Book("Lalka", "Bolesław Prus", "1890"),
+    new Book("Chłopi", "Władysław Reymont", "1904"),
+    new Book("Pan Samochodzik i templariusze", "Zbigniew Nienacki", "1962"),
+    new Book("Opowieści z Narnii", "C.S. Lewis", "1950"),
+    new Book("Kroniki rodzinne", "Maria Dąbrowska", "1957"),
+    new Book("Cienka czerwona linia", "James Jones", "1962"),
+    new Book("Wiatr wierzbowy", "Kazimierz Brandys", "1963"),
+    new Book("Zbrodnia i kara", "Fiodor Dostojewski", "1866"),
+    new Book("Mistrz i Małgorzata", "Michaił Bułhakow", "1967"),
+    new Book("Rok 1984", "George Orwell", "1949"),
+    new Book("Ojciec chrzestny", "Mario Puzo", "1969"),
+    new Book("To", "Stephen King", "1986"),
+    new Book("Pan Wołodyjowski", "Henryk Sienkiewicz", "1888"),
+    new Book("Kamienie na szaniec", "Aleksander Kamiński", "1943"),
+    new Book("Szkice węglem", "Stefan Żeromski", "1904"),
+    new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "1912"),
+    new Book("Potop", "Henryk Sienkiewicz", "1886"),
+    new Book("Sklepy cynamonowe", "Bruno Schulz", "1934"),
+    new Book("Ogniem i słowem", "Henryk Sienkiewicz", "1875"),
+    new Book("Nad Niemnem", "Eliza Orzeszkowa", "1888"),
+    new Book("Ferdydurke", "Witold Gombrowicz", "1937"),
+    new Book("Wiedźmin", "Andrzej Sapkowski", "1993"),
+    new Book("Dżuma", "Albert Camus", "1947"),
+    new Book("Dziady", "Adam Mickiewicz", "1822"),
+    new Book("Quo Vadis", "Henryk Sienkiewicz", "1896"),
+    new Book("Faraon", "Bolesław Prus", "1897"),
+    new Book("Ziemia obiecana", "Władysław Reymont", "1899"),
+    new Book("Kordian", "Juliusz Słowacki", "1833"),
+    new Book("Krzyżacy", "Henryk Sienkiewicz", "1900"),
+    new Book("Wesele", "Stanisław Wyspiański", "1901"),
+    new Book("Balladyna", "Juliusz Słowacki", "1839"),
+    new Book("Przedwiośnie", "Stefan Żeromski", "1924"),
+    new Book("Ludzie bezdomni", "Stefan Żeromski", "1900"),
+    new Book("Przygody Tomka Sawyera", "Mark Twain", "1876")
+  );
+}
 
 let selectedReader = null;
 let selectedBooks = [];
@@ -227,7 +233,7 @@ function renderReaders(reader) {
       if (checked) {
         if (selectedReader !== null) {
           const previousSelected = document.getElementById(
-            "reader" + library.rea.indexOf(selectedReader)
+            "reader" + library.readers.indexOf(selectedReader)
           );
           previousSelected.checked = false;
         }
@@ -264,12 +270,13 @@ function renderBooks() {
   );
 }
 
-function addForm(prefix, renderFn) {
+function addForm(prefix, createFn) {
   const form = document.getElementById(prefix + "Form");
   const modal = document.getElementById(prefix + "Dialog");
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    console.log("submit");
 
     const formData = new FormData(form);
 
@@ -277,7 +284,7 @@ function addForm(prefix, renderFn) {
     for (let [key, value] of formData) {
       data[key] = value;
     }
-    renderFn(data);
+    createFn(data);
 
     modal.close();
     event.target.reset();
@@ -296,8 +303,14 @@ function addModal(prefix) {
 renderReaders();
 renderBooks();
 
-addForm("reader", renderReaders);
-addForm("book", renderBooks);
+addForm("reader", renderReaders, (data) => {
+  library.addReader(new Reader(data.name, data.surname, data.age));
+  renderReaders();
+});
+addForm("book", renderBooks, (data) => {
+  library.addBook(new Book(data.title, data.author, data.rokWydania));
+  renderBooks();
+});
 
 addModal("reader");
 addModal("book");
