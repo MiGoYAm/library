@@ -11,8 +11,8 @@ body {
     height: 100vh;
     width: 100vw;
     padding: 16px;
-    background-color: #282c35; /* Ciemny kolor tła */
-    color: #ffffff; /* Kolor tekstu */
+    background-color: #282c35; 
+    color: #ffffff; 
 }
 
 #d911 {
@@ -27,8 +27,8 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    background-color: #333; /* Ciemny kolor tła bloków */
-    border: 1px solid #555; /* Kolor ramki bloków */
+    background-color: #333; 
+    border: 1px solid #555; 
     border-radius: 8px;
     overflow: hidden;
 }
@@ -48,7 +48,7 @@ ul > li {
 
 ul > * + * {
     border-style: solid;
-    border-color: #123456; /* Odcień niebieskiego */
+    border-color: #123456; 
     border-right: none;
     border-left: none;
     border-top-width: 1px;
@@ -56,11 +56,11 @@ ul > * + * {
 }
 
 ul > :nth-child(even) {
-    background-color: #456789; /* Jasny odcień niebieskiego */
+    background-color: #456789; 
 }
 
 ul > :nth-child(odd) {
-    background-color: #56789a; /* Inny odcień niebieskiego */
+    background-color: #56789a; 
 }
 
 #readers {
@@ -75,13 +75,13 @@ ul > :nth-child(odd) {
     padding: 8px;
     display: flex;
     justify-content: space-between;
-    background-color: #1e1e1e; /* Ciemny kolor tła paska narzędziowego */
+    background-color: #1e1e1e; 
 }
 
 #bar > button {
     border-radius: 50px;
     border: none;
-    background-color: #555; /* Ciemny kolor przycisku */
+    background-color: #555; 
     color: #ffffff;
     width: 32px;
     height: 32px;
@@ -104,7 +104,7 @@ header {
 
 header > h1 {
     margin-right: auto;
-    color: #ffffff; /* Kolor tekstu nagłówka */
+    color: #ffffff; 
 }
 
 header > button {
@@ -114,7 +114,7 @@ header > button {
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    border: 2px solid #007bff; /* Odcień niebieskiego */
+    border: 2px solid #007bff; 
     border-radius: 5px;
     color: #fff;
     background-color: #007bff;
@@ -127,7 +127,7 @@ header > button {
 }
 
 header > button:hover {
-    background-color: #0056b3; /* Ciemniejszy odcień niebieskiego */
+    background-color: #0056b3; 
     color: #fff;
     transform: scale(1.1);
 }
@@ -192,7 +192,8 @@ dialog > form button:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #007bff; 
+    background-color: #121416; 
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-track {
