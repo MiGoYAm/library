@@ -87,6 +87,11 @@ ul > :nth-child(odd) {
     height: 32px;
     outline: none;
 }
+#bar > button:hover {
+    background-color: #008cff;
+    transition: 0.2s ease-in-out;
+    transform: rotate(360deg);
+}
 
 .material-symbols-rounded {
     font-variation-settings:
@@ -100,6 +105,8 @@ header {
     display: flex;
     justify-content: flex-end;
     gap: 24px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 header > h1 {
@@ -120,6 +127,10 @@ header > button {
     background-color: #007bff;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+header > button:nth-last-child(1) {
+    margin-left: 32px;
 }
 
 .clicked {
@@ -202,6 +213,13 @@ dialog > form button:hover {
 
 input[type='checkbox'] {
     margin-right: 8px;
+}
+
+li:has(input[type='checkbox']:disabled) {
+    background-color: rgb(85, 85, 85)
+}
+input[type='checkbox']:disabled {
+    visibility: hidden;
 }
 
 ul label {
