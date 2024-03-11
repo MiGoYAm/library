@@ -315,22 +315,25 @@ addModal("book");
 const wypo = document.getElementById("wypo");
 const zwrot = document.getElementById("zwrot");
 const accept = document.getElementById("accept");
-wypo.addEventListener("click", (event) => {
-  if (selectedReader) {
-    selectedMode = "loan";
-    event.target.classList.add("clicked");
-    zwrot.classList.remove("clicked");
-    renderBooks();
-  }
-});
-zwrot.addEventListener("click", (event) => {
-  if (selectedReader) {
-    selectedMode = "return";
-    event.target.classList.add("clicked");
-    wypo.classList.remove("clicked");
-    renderBooks();
-  }
-});
+
+function addButton(element, secondElement, mode) {
+  element.addEventListener("click", () => {
+    if (selectedMode === mode) {
+      selectedMode = "";
+      element.classList.remove("clicked");
+      renderBooks();
+    } else if (selectedReader) {
+      selectedMode = mode;
+      element.classList.add("clicked");
+      secondElement.classList.remove("clicked");
+      renderBooks();
+    }
+  });
+}
+
+addButton(wypo, zwrot, "loan");
+addButton(zwrot, wypo, "return");
+
 accept.addEventListener("click", (event) => {
   if (selectedReader) {
     if (selectedMode === "loan") {
@@ -338,12 +341,12 @@ accept.addEventListener("click", (event) => {
     } else if (selectedMode === "return") {
       library.returnBook(selectedReader, ...selectedBooks);
     }
-    renderBooks();
-    renderReaders();
-    selectedMode = "";
-    wypo.classList.remove("clicked");
-    zwrot.classList.remove("clicked");
     selectedReader = null;
     selectedBooks = [];
+    selectedMode = "";
+    renderBooks();
+    renderReaders();
+    wypo.classList.remove("clicked");
+    zwrot.classList.remove("clicked");
   }
 });
