@@ -55,6 +55,11 @@ class Library {
 
     localStorage.setItem("books", JSON.stringify(this.books));
   }
+  delBook(...book) {
+    this.books = this.books.filter((value) => !book.includes(value));
+
+    localStorage.setItem("books", JSON.stringify(this.books));
+  }
 
   addReader(...reader) {
     this.readers.push(...reader);
@@ -74,6 +79,12 @@ class Library {
 
       return 0;
     });
+
+    localStorage.setItem("readers", JSON.stringify(this.readers));
+  }
+
+  delReader(...reader) {
+    this.readers = this.readers.filter((value) => !reader.includes(value));
 
     localStorage.setItem("readers", JSON.stringify(this.readers));
   }
@@ -188,7 +199,7 @@ if (library.books.length === 0) {
 
 let selectedReader = null;
 let selectedBooks = [];
-let selectedMode = ""; // "loan" | "return"
+let selectedMode = ""; // "loan" | "return" | "delReader" | "delBook"
 
 function render(prefix, list, selectableFn, fn, changeFn) {
   const ul = document.getElementById(prefix + "List");
@@ -315,6 +326,12 @@ addModal("book");
 const wypo = document.getElementById("wypo");
 const zwrot = document.getElementById("zwrot");
 const accept = document.getElementById("accept");
+const bdel = document.getElementById("bookDel");
+const rdel = document.getElementById("readerDel");
+bdel.addEventListener('click', () => {
+  library.delBook()
+  renderBooks()
+})
 
 function addButton(element, secondElement, mode) {
   element.addEventListener("click", () => {
